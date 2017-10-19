@@ -154,6 +154,10 @@ class LineAPI {
     return this._client.kickoutFromGroup(0,group,memid);
   }
 
+  _leaveGroup(gid) {
+    return this._client.leaveGroup(0,gid);
+  }
+
   _cancel(groupid,member) {
     return this._client.cancelGroupInvitation(0,groupid,member);
   }
