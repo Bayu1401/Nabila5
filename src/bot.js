@@ -10,7 +10,7 @@ let LINE = require('./main.js');
 let client =  new LineConnect();
 
 client.startx().then(async (res) => {
-	let ops;
+	
 	while(true) {
 		try {
 			ops = await client.fetchOps(res.operation.revision, 5);
