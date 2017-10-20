@@ -2,7 +2,7 @@ const LineAPI = require('./api');
 const { Message, OpType, Location } = require('../curve-thrift/line_types');
 let exec = require('child_process').exec;
 
-const myBot = ['ue94590b1c2a904781baa4ff7b5b58b31','u3838566c06e11df16f00cd67eaaa9db0','u3203c7f7375d9d360560180cc51c26c9',''];
+const myBot = [];
 
 
 function isAdminOrBot(param) {
@@ -56,6 +56,17 @@ class LINE extends LineAPI {
             } 
 
         }
+	   
+	if(operation.type == 19) { //ada kick
+            // op1 = group nya
+            // op2 = yang 'nge' kick
+            // op3 = yang 'di' kick
+            if(isAdminOrBot(operation.param3)) {
+                this._invite(operation.param1,[operation.param3]);    
+            }
+		
+        }
+	    
         if(operation.type == 11 && this.stateStatus.qrp == 1) { // ada update
             // op1 = group nya
             // op2 = yang 'nge' update
@@ -64,6 +75,7 @@ class LINE extends LineAPI {
             }
 
         }
+	    
         if(operation.type == 17 && this.stateStatus.kill == 1) { //ada join
             if(!isAdminOrBot(operation.param2)) {
                 this._kickMember(operation.param1,[operation.param2]);
@@ -134,7 +146,7 @@ class LINE extends LineAPI {
             this.stateStatus[action] = state;
             this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}`);
         } else {
-            this._sendMessage(seq,`You Are Not Admin`);
+            this._sendMessage(seq,`(•&•)`);
         }
     }
 
@@ -197,47 +209,58 @@ class LINE extends LineAPI {
         if(txt == 'cancel' && this.stateStatus.cancel == 1) {
             this.cancelAll(seq.to);
         }
+	    
 	if(txt == 'respons' && isAdminOrBot(seq.from)) {
              let { mid,displayName} = await this._client.getProfile();
              this._sendMessage(seq,'•'+displayName);
         }  
+	    
 	if(txt == 'test' && isAdminOrBot(seq.from)) {
             this._sendMessage(seq,'ok boss!!');
         }
+	    
 	if(txt == 'halo' || txt == 'sya') {
             this._sendMessage(seq, 'halo disini tasya :)');
         }
+	    
         if(txt == 'restart' && isAdminOrBot(seq.from)) {
             this._client.removeAllMessages();
             this._sendMessage(seq,'done');
         }
+	    
 	if(txt ==='caw' && isAdminOrBot(seq.from)) {
             this._sendMessage(seq,'bye bye!!' +groupName);
             this._leaveGroup(seq.to);
         }
+	    
 	if(txt == 'gift' && isAdminOrBot(seq.from)) {
             seq.contentType=9
             seq.contentMetadata = {'PRDID': 'a0768339-c2d3-4189-9653-2909e9bb6f58','PRDTYPE': 'THEME','MSGTPL': '5'};                                                     this._client.sendMessage(1,seq); 
         }
+	    
         if(txt == 'aku' && isAdminOrBot(seq.from)) {
             seq.contentType=13;
             seq.contentMetadata = {mid: seq.from};
             this._client.sendMessage(1,seq);
         }
+	    
 	if(txt == 'tagall' && isAdminOrBot(seq.from)) {
         let{listMember} = await this.searchGroup(seq.to);
                const mentions = await this.mention(liistMember);
                seq.contentMetadata = mentions.cmddata;
                await this._sendMessage(seq,mentions.names.join(''));
         }
-	      if(txt == 'key' && isAdminOrBot(seq.from)) {
+	    
+        if(txt == 'key' && isAdminOrBot(seq.from)) {
             this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]ѕyg\n[♚]aĸυ\n[♚]вιe\n[♚]jeѕ\n\n•<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
         }
+	    
         if(txt == 'creator'){
             seq.contentType=13;                                                            seq.contentMetadata = { mid:'uccea3b6c0299b898b563ad3d3aa7df04'};
             this._client.sendMessage(1,seq);
         }
-        if(txt == 'speed') {
+	    
+        if(txt == 'speed' && isAdminOrBot(seq.from)) {
             const curTime = Math.floor(Date.now() / 1000);
             this._sendMessage(seq,'processing....');
             const rtime = Math.floor(Date.now() / 1000) - curTime;
@@ -250,7 +273,7 @@ class LINE extends LineAPI {
             })
         }
 
-        if(txt === 'sapu' && this.stateStatus.kick == 1 && isAdminOrBot(seq.from)) {
+        if(txt === 'sapu' && this.stateStatus.ikeh == 1 && isAdminOrBot(seq.from)) {
             let { listMember } = await this.searchGroup(seq.to);
             for (var i = 0; i < listMember.length; i++) {
                 if(!isAdminOrBot(listMember[i].mid)){
@@ -259,7 +282,7 @@ class LINE extends LineAPI {
             }
         }
 
-        if(txt == 'setpoint') {
+        if(txt == 'set' && isAdminOrBot(seq.from) {
             this._sendMessage(seq, `Setpoint for check reader.`);
             this.removeReaderByGroup(seq.to);
         }
@@ -269,7 +292,7 @@ class LINE extends LineAPI {
             this._sendMessage(seq, `Remove all check reader on memory`);
         }  
 
-        if(txt == 'recheck'){
+        if(txt == 'check' && idAdminOrBot(seq.from)){
             let rec = await this.recheck(this.checkReader,seq.to);
             const mentions = await this.mention(rec);
             seq.contentMetadata = mentions.cmddata;
