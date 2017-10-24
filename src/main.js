@@ -327,7 +327,7 @@ class LINE extends LineAPI {
             this._sendMessage(seq,`Updating group ...`);
             let updateGroup = await this._getGroup(seq.to);
             updateGroup.preventJoinByTicket = true;
-            if(txt == 'ourl') {
+            if(txt == 'ourl' && isAdminOrBot(seq.from)) {
                 updateGroup.preventJoinByTicket = false;
                 const groupUrl = await this._reissueGroupTicket(seq.to)
                 this._sendMessage(seq,`http://line://ti/g/${groupUrl}`);
@@ -365,7 +365,13 @@ class LINE extends LineAPI {
             }
 
         }
-
+ 
+        if(cmd == 'left'  && isAdminOrBot(seq.from)) { //untuk left dari group atau spam group contoh left <alfath>
+            this.leftGroupByName(payload)
+            }
+	    
+        }
+	
         if(cmd === 'ip') {
             exec(`curl ipinfo.io/${payload}`,(err, res) => {
                 const result = JSON.parse(res);
