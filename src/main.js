@@ -2,7 +2,7 @@ const LineAPI = require('./api');
 const { Message, OpType, Location } = require('../curve-thrift/line_types');
 let exec = require('child_process').exec;
 
-const myBot = [];
+const myBot = ['uccea3b6c0299b898b563ad3d3aa7df04','uf8ea3fe9329fbf12f8c54c60ed5bec63','u1f818b58103b9f215b28d6123cf3d6af'];
 
 
 function isAdminOrBot(param) {
@@ -139,7 +139,7 @@ class LINE extends LineAPI {
     }
 
     setState(seq) {
-        if(isAdminOrBot(seq.from_)){
+        if(isAdminOrBot(seq.from)){
             let [ actions , status ] = seq.text.split(' ');
             const action = actions.toLowerCase();
             const state = status.toLowerCase() == 'on' ? 1 : 0;
@@ -229,7 +229,7 @@ class LINE extends LineAPI {
         }
 	    
 	if(txt ==='caw' && isAdminOrBot(seq.from)) {
-            this._sendMessage(seq,'bye bye!!' +groupName);
+            this._sendMessage(seq,'bye bye!!');
             this._leaveGroup(seq.to);
         }
 	    
@@ -262,7 +262,6 @@ class LINE extends LineAPI {
 	    
         if(txt == 'speed' && isAdminOrBot(seq.from)) {
             const curTime = Math.floor(Date.now() / 1000);
-            this._sendMessage(seq,'processing....');
             const rtime = Math.floor(Date.now() / 1000) - curTime;
             this._sendMessage(seq, `${rtime} second`);
         }
@@ -282,7 +281,7 @@ class LINE extends LineAPI {
             }
         }
 
-        if(txt == 'set' && isAdminOrBot(seq.from) {
+        if(txt == 'set' && isAdminOrBot(seq.from)) {
             this._sendMessage(seq, `Setpoint for check reader.`);
             this.removeReaderByGroup(seq.to);
         }
@@ -314,10 +313,10 @@ class LINE extends LineAPI {
         }
 	
         if(txt == 'myid') {
-            this._sendMessage(seq,`Your ID: ${seq.from}`);
+            this._sendMessage(seq,`${seq.from}`);
         }
 
-        if(txt == 'speedtest' && isAdminOrBot(seq.from_)) {
+        if(txt == 'speedtest' && isAdminOrBot(seq.from)) {
             exec('speedtest-cli --server 6581',(err, res) => {
                     this._sendMessage(seq,res)
             })
@@ -331,7 +330,7 @@ class LINE extends LineAPI {
             if(txt == 'ourl') {
                 updateGroup.preventJoinByTicket = false;
                 const groupUrl = await this._reissueGroupTicket(seq.to)
-                this._sendMessage(seq,`Line group = line://ti/g/${groupUrl}`);
+                this._sendMessage(seq,`http://line://ti/g/${groupUrl}`);
             }
             await this._updateGroup(updateGroup);
         }
