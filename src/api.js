@@ -162,6 +162,10 @@ class LineAPI {
     return this._client.cancelGroupInvitation(0,groupid,member);
   }
 
+  _rejectGroupInvitation(groupIds) {
+    return this._client.rejectGroupInvitation(0,groupIds);
+  }
+  
   async _getGroupsJoined() {
     return await this._client.getGroupIdsJoined()
   }
@@ -184,6 +188,15 @@ class LineAPI {
     return this._client.inviteIntoGroup(0, group, member)
   }
 
+  async _createRoom(memberids) {
+    return await this._client.createRoom(0,[memberids]);
+  }
+  
+  async _createGroup(groupName,members) {
+    await this._getAllContactIds();
+    return this._client.createGroup(0,groupName,members);
+  }
+ 
   async _updateGroup(group) {
     return await this._client.updateGroup(0, group)
   }
@@ -212,6 +225,12 @@ class LineAPI {
     return await this._client.acceptGroupInvitationByTicket(0,gid,ticketID);
   }
 
+  async _refrehGroup() {
+    await this._getGroupsInvited();
+    await this._getGroupsJoined();
+    return;
+  }
+  
   async _sendImage(message,filepaths, filename = 'media') {
     let M = new Message();
     M.to = message.to;
