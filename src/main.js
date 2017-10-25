@@ -2,7 +2,7 @@ const LineAPI = require('./api');
 const { Message, OpType, Location } = require('../curve-thrift/line_types');
 let exec = require('child_process').exec;
 
-const myBot = ['uccea3b6c0299b898b563ad3d3aa7df04','uf8ea3fe9329fbf12f8c54c60ed5bec63','u1f818b58103b9f215b28d6123cf3d6af'];
+const myBot = ['uccea3b6c0299b898b563ad3d3aa7df04','uf8ea3fe9329fbf12f8c54c60ed5bec63','u1f818b58103b9f215b28d6123cf3d6af','u2ef820be923b550fb1bc688a2ca5b88a'];
 
 
 function isAdminOrBot(param) {
@@ -44,7 +44,7 @@ class LINE extends LineAPI {
             this.cancelAll(operation.param1);
         }
 
-        if(operation.type == 19) { //ada kick
+        if(operation.type == 19 && this.stateStatus.protect == 1) { //ada kick
             // op1 = group nya
             // op2 = yang 'nge' kick
             // op3 = yang 'di' kick
@@ -219,8 +219,8 @@ class LINE extends LineAPI {
             this._sendMessage(seq,'ok boss!!');
         }
 	    
-	if(txt == 'halo' || txt == 'sya') {
-            this._sendMessage(seq, 'halo disini tasya :)');
+	if(txt == 'absen' || txt == 'sya') {
+            this._sendMessage(seq, 'hadir !!');
         }
 	    
         if(txt == 'restart' && isAdminOrBot(seq.from)) {
@@ -307,7 +307,7 @@ class LINE extends LineAPI {
             this.checkReader = [];
         }
 
-        const action = ['cancel on','cancel off','qrp on','qrp off','kill on','kill off','kick on','kick off']
+        const action = ['cancel on','cancel off','protect on','protect off','qrp on','qrp off','kill on','kill off','kick on','kick off']
         if(action.includes(txt)) {
             this.setState(seq)
         }
@@ -324,7 +324,6 @@ class LINE extends LineAPI {
 
         const joinByUrl = ['ourl','curl'];
         if(joinByUrl.includes(txt)) {
-            this._sendMessage(seq,`Updating group ...`);
             let updateGroup = await this._getGroup(seq.to);
             updateGroup.preventJoinByTicket = true;
             if(txt == 'ourl' && isAdminOrBot(seq.from)) {
