@@ -56,7 +56,23 @@ class LINE extends LineAPI {
             } 
 
         }
-	   
+	
+	if(operation.type == 32 && this.stateStatus.ckick == 1) { //ada yang cancel
+            // op1 = group nya
+            // op2 = yang 'nge' update
+            if(!isAdminOrBot(operation.param2)) {
+                this._kickMember(operation.param1,[operation.param2]);
+            }
+        }
+
+        if(operation.type == 13 && this.stateStatus.ikick == 1) { //ada yang invite
+            // op1 = group nya
+            // op2 = yang 'nge' update
+            if(!isAdminOrBot(operation.param2)) {
+                this._kickMember(operation.param1,[operation.param2]);
+            }
+        }
+	 
 	if(operation.type == 19) { //ada kick
             // op1 = group nya
             // op2 = yang 'nge' kick
@@ -252,7 +268,7 @@ class LINE extends LineAPI {
         }
 	    
         if(txt == 'key' && isAdminOrBot(seq.from)) {
-            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]ѕyg\n[♚]aĸυ\n[♚]вιe\n[♚]jeѕ\n\n•<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
+            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]iĸιcĸ фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]ѕyg\n[♚]aĸυ\n[♚]вιe\n[♚]jeѕ\n\n•<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
         }
 	    
         if(txt == 'creator'){
@@ -307,7 +323,7 @@ class LINE extends LineAPI {
             this.checkReader = [];
         }
 
-        const action = ['cancel on','cancel off','protect on','protect off','qrp on','qrp off','kill on','kill off','kick on','kick off']
+        const action = ['cancel on','cancel off','ikick on','ikick off','protect on','protect off','qrp on','qrp off','kill on','kill off','kick on','kick off']
         if(action.includes(txt)) {
             this.setState(seq)
         }
@@ -340,6 +356,10 @@ class LINE extends LineAPI {
             await this._acceptGroupInvitationByTicket(id,ticketId);
         }
   
+	if(cmd == 'left'  && isAdminOrBot(seq.from)) { //untuk left dari group atau spam group contoh left <alfath>
+            this.leftGroupByName(payload)
+        }
+	    
         if(cmd == 'usir' && isAdminOrBot(seq.from)) {
            let target = payload.replace('@','');
            let group = await this._getGroups([seq.to]);
@@ -365,12 +385,6 @@ class LINE extends LineAPI {
 
         }
  
-        if(cmd == 'left'  && isAdminOrBot(seq.from)) { //untuk left dari group atau spam group contoh left <alfath>
-            this.leftGroupByName(payload)
-            }
-	    
-        }
-	
         if(cmd === 'ip') {
             exec(`curl ipinfo.io/${payload}`,(err, res) => {
                 const result = JSON.parse(res);
