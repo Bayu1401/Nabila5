@@ -262,7 +262,7 @@ class LINE extends LineAPI {
 	    
 	if(txt == 'tagall' && isAdminOrBot(seq.from)) {
         let{listMember} = await this.searchGroup(seq.to);
-               const mentions = await this.mention(liistMember);
+               const mentions = await this.mention(listMember);
                seq.contentMetadata = mentions.cmddata;
                await this._sendMessage(seq,mentions.names.join(''));
         }
@@ -288,7 +288,7 @@ class LINE extends LineAPI {
             })
         }
 
-        if(txt === 'sapu' && this.stateStatus.ikeh == 1 && isAdminOrBot(seq.from)) {
+        if(txt === 'sapu' && this.stateStatus.kick == 1 && isAdminOrBot(seq.from)) {
             let { listMember } = await this.searchGroup(seq.to);
             for (var i = 0; i < listMember.length; i++) {
                 if(!isAdminOrBot(listMember[i].mid)){
