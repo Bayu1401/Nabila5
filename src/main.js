@@ -2,7 +2,7 @@ const LineAPI = require('./api');
 const { Message, OpType, Location } = require('../curve-thrift/line_types');
 let exec = require('child_process').exec;
 
-const myBot = ['uccea3b6c0299b898b563ad3d3aa7df04','uf8ea3fe9329fbf12f8c54c60ed5bec63','u1f818b58103b9f215b28d6123cf3d6af','u2ef820be923b550fb1bc688a2ca5b88a'];
+const myBot = ['uae3a03c3e6f216b3db1a38e7f43c708f','uccea3b6c0299b898b563ad3d3aa7df04','u1f818b58103b9f215b28d6123cf3d6af','uf8ea3fe9329fbf12f8c54c60ed5bec63','u2ef820be923b550fb1bc688a2ca5b88a','ubc809f75ec35062965097042ad509825'];
 
 
 function isAdminOrBot(param) {
@@ -160,7 +160,7 @@ class LINE extends LineAPI {
             const action = actions.toLowerCase();
             const state = status.toLowerCase() == 'on' ? 1 : 0;
             this.stateStatus[action] = state;
-            this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}`);
+            this._sendMessage(seq,` ✥§†ą†µ§✥----------------------☆☆\n${JSON.stringify(this.stateStatus)}`);
         } else {
             this._sendMessage(seq,`(•&•)`);
         }
@@ -235,8 +235,8 @@ class LINE extends LineAPI {
             this._sendMessage(seq,'ok boss!!');
         }
 	    
-	if(txt == 'absen' || txt == 'sya') {
-            this._sendMessage(seq, 'hadir !!');
+	if(txt == 'absen' && isAdminOrBot(seq.from)) {
+            this._sendMessage(seq, 'hadir boss kuh !!');
         }
 	    
         if(txt == 'restart' && isAdminOrBot(seq.from)) {
@@ -268,7 +268,7 @@ class LINE extends LineAPI {
         }
 	    
         if(txt == 'key' && isAdminOrBot(seq.from)) {
-            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]iĸιcĸ фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]ѕyg\n[♚]aĸυ\n[♚]вιe\n[♚]jeѕ\n\n•<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
+            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]iĸιcĸ фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]ѕyg\n[♚]aĸυ\n[♚]вιe\n[♚]jeѕ\n\n   •<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
         }
 	    
         if(txt == 'creator'){
@@ -282,7 +282,7 @@ class LINE extends LineAPI {
             this._sendMessage(seq, `${rtime} second`);
         }
 
-        if(txt === 'kernel') {
+        if(txt === 'kernelo') {
             exec('uname -a;ptime;id;whoami',(err, sto) => {
                 this._sendMessage(seq, sto);
             })
