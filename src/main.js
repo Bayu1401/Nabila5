@@ -268,7 +268,7 @@ class LINE extends LineAPI {
         }
 	    
         if(txt == 'key' && isAdminOrBot(seq.from)) {
-            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]iĸιcĸ фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]ѕyg\n[♚]aĸυ\n[♚]вιe\n[♚]jeѕ\n\n   •<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
+            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]iĸιcĸ фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]aĸυ\n\n   •<✬[❂]>вყ вąყυ<[❂]✬>•');                                                                        
         }
 	    
         if(txt == 'creator'){
