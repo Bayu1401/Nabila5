@@ -161,8 +161,6 @@ class LINE extends LineAPI {
             const state = status.toLowerCase() == 'on' ? 1 : 0;
             this.stateStatus[action] = state;
             this._sendMessage(seq,` ✥§†ą†µ§✥----------------------☆☆\n${JSON.stringify(this.stateStatus)}`);
-        } else {
-            this._sendMessage(seq,`(•&•)`);
         }
     }
 
@@ -323,7 +321,7 @@ class LINE extends LineAPI {
             this.checkReader = [];
         }
 
-        const action = ['cancel on','cancel off','ikick on','ikick off','protect on','protect off','qrp on','qrp off','kill on','kill off','kick on','kick off']
+        const action = ['cancel on','cancel off','ikick on','ikick off','protect on','protect off','qrp on','qrp off','kill on','kill off','ckick on','ckick off','kick on','kick off']
         if(action.includes(txt)) {
             this.setState(seq)
         }
