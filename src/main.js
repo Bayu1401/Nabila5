@@ -226,7 +226,7 @@ class LINE extends LineAPI {
 	    
 	if(txt == 'respons' && isAdminOrBot(seq.from)) {
              let { mid,displayName} = await this._client.getProfile();
-             this._sendMessage(seq,'•'+displayName);
+             this._sendMessage(seq,' '+displayName);
         }  
 	    
 	if(txt == 'test' && isAdminOrBot(seq.from)) {
@@ -266,7 +266,7 @@ class LINE extends LineAPI {
         }
 	    
         if(txt == 'key' && isAdminOrBot(seq.from)) {
-            this._sendMessage(seq, '•<✬[❂]>cфмaпd lιѕт<[❂]✬>•\n\n[♚]тagall\n[♚]clear\n[♚]ĸerпel\n[♚]reѕpфпѕ\n[♚]caпcel\n[♚]prфтecт фп|фғғ\n[♚]caпcel фп|фғғ\n[♚]iĸιcĸ фп|фғғ\n[♚]ckick фп|фғғ\n[♚]ĸιcĸ фп|фғғ\n[♚]ĸιll фп|фғғ\n[♚]qrp фп|фғғ\n[♚]reѕтarт\n[♚]creaтфr\n[♚]ѕpeed\n[♚]gιғт\n[♚]cнecĸ\n[♚]ѕeт\n[♚]фυrl\n[♚]cυrl\n[♚]caw\n[♚]υѕιr@\n[♚]ғυcĸ\n[♚]lag\n[♚]aĸυ\n\n   •<✬[❂]>вყ顔なし<[❂]✬>•');                                                                        
+            this._sendMessage(seq, '༺益-cфмaпd lιѕт-益༻\n\n✧тagall\n✧clear\n✧ĸerпel\n✧reѕpфпѕ\n✧caпcel\n✧prфтecт фп|фғғ\n✧caпcel фп|фғғ\n✧iĸιcĸ фп|фғғ\n✧ckick фп|фғғ\n✧ĸιcĸ фп|фғғ\n✧ĸιll фп|фғғ\n✧qrp фп|фғғ\n✧reѕтarт\n✧creaтфr\n✧ѕpeed\n✧gιғт\n✧cнecĸ\n✧lυrĸ\n✧ѕet\n✧фυrl\n✧cυrl\n✧caw\n✧υѕιr@\n✧ғυcĸ\n✧lag\n✧aĸυ\n\n ѕpecιal тнaпĸ`ѕ тф \n  ♔〘alғнadιrĸ〙♔ \n\n\nѕυpфrт вy \n\n  ♔〘тeaм ѕнarĸ вфт〙♔ \n♔〘prфlιпg тeaм вфт〙♔ \n\ncreaтe вy\n\n       ♔〘 顔なし「⚘」〙♔ \n\nhttp://line.me/ti/p/GFfHuTXfFp');                                                                        
         }
 	    
         if(txt == 'creator'){
@@ -305,7 +305,7 @@ class LINE extends LineAPI {
             this._sendMessage(seq, `Remove all check reader on memory`);
         }  
 
-        if(txt == 'check' && idAdminOrBot(seq.from)){
+        if(txt == 'lurk' && idAdminOrBot(seq.from)){
             let rec = await this.recheck(this.checkReader,seq.to);
             const mentions = await this.mention(rec);
             seq.contentMetadata = mentions.cmddata;
