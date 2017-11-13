@@ -223,7 +223,11 @@ class LINE extends LineAPI {
         if(txt == 'cancel' && this.stateStatus.cancel == 1) {
             this.cancelAll(seq.to);
         }
-	    
+        If(group.preventJoinByTicket==false&& this.stateStatus.qrp == 1 && isAdminOrBot(seq.from)){
+          group.preventJoinByTicket=true; 
+              await this._updateGroup(group); 
+        }
+		
 	if(txt == 'respons' && isAdminOrBot(seq.from)) {
              let { mid,displayName} = await this._client.getProfile();
              this._sendMessage(seq,' '+displayName);
