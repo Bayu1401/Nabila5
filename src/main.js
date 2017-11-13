@@ -219,7 +219,13 @@ class LINE extends LineAPI {
         const [ cmd, payload ] = textMessages.split(' ');
         const txt = textMessages.toLowerCase();
         const messageID = seq.id;
-
+	   
+	const ginfo =  await this._getGroup(seq.to);
+	const groupCreator = ('[ginfo.creator.mid]');
+	const cot = textMessages.split('@');  
+	const com = textMessages.split(':');
+	const cox = textMessages.split(' ');  
+	
         if(txt == 'cancel' && this.stateStatus.cancel == 1) {
             this.cancelAll(seq.to);
         }
