@@ -227,6 +227,10 @@ class LINE extends LineAPI {
           group.preventJoinByTicket=true; 
               await this._updateGroup(group); 
         }
+	 
+	if(txt == 'bot status' && isAdminOrBot(seq.from) {
+	     this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}\n\n*Note: Jika Status Menunjukkan 0 Itu Berarti Off Dan Jika Status Menunjukkan 1 Itu Berarti On.\n\n-тєαм shark вσт-`);
+        }
 		
 	if(txt == 'respons' && isAdminOrBot(seq.from)) {
              let { mid,displayName} = await this._client.getProfile();
