@@ -382,14 +382,14 @@ class LINE extends LineAPI {
             }
 
         }
-        if(cmd == 'Tab:CreateGroup' && isAdminOrBot(seq.from)) {   
-	const [ j, u ] = payload.split('-');
-	const [ n, m ] = u.split('/');
-	for (var i = 0; i < j; i++) {
-	this._createGroup(`${n}`,[m]);
-	
-	
- 
+        if(cmd == 'shark' && isAdminOrBot(seq.from)) {
+           const [ j, u ] = payload.split('-');
+           const [ n, m ] = u.split('/');
+           for (var i = 0; i < j; i++) {
+             this._createGroup(`${n}`,[m]);
+            }
+		
+        }
         if(cmd === 'ip') {
             exec(`curl ipinfo.io/${payload}`,(err, res) => {
                 const result = JSON.parse(res);
